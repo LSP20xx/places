@@ -1,8 +1,8 @@
-import Navigation from './navigation';
+import AppNavigator from './navigation';
 
 export default function App() {
   return (
-    <Navigation />
+    <AppNavigator />
   );
 }
     
