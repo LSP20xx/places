@@ -1,15 +1,13 @@
 import React from 'react';
 import { View, Image, Text, Button } from 'react-native';
-
-import { COLORS, PLACES } from '../../constants';
+import { useSelector } from 'react-redux';
+import { COLORS } from '../../constants';
 
 import { styles } from './styles';
 
-
-
-const Place = ({ route }) => {
-  const { placeId } = route.params;
-  const place = PLACES.find((place) => place.id === placeId);
+const Place = () => {
+  const { data, selected }  = useSelector((state) => state.places);
+  const place = data.find((place) => place.id === selected.id);
   return (
     <View style={styles.container}>
       <Image resizeMode="cover" source={{ uri: place.imageSrc }} style={styles.image}/>

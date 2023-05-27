@@ -16,7 +16,7 @@ const FavoriteItem = ({ title, address, imageSrc, onPress }) => {
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.address}>{address}</Text>
-          <TouchableOpacity style={styles.linkContainer}onPress={onPress}>
+          <TouchableOpacity style={styles.linkContainer} onPress={onPress}>
             <Text style={styles.link}>BORRAR</Text>
           </TouchableOpacity>
         </View>

@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { COLORS } from "../../constants";
-import SearchNavigator from "../search";
+import MainNavigator from "../main";
 import FavoritesNavigator from "../favorites";
 import NotificationsNavigator from "../notifications";
 import ProfileNavigator from "../profile";
@@ -12,7 +12,7 @@ const BottomTab = createBottomTabNavigator();
 
 const TabsNavigator = () => {
     return (<BottomTab.Navigator
-        initialRouteName="Lugares"
+        initialRouteName="Home"
         screenOptions={{
             headerShown: false,
             tabBarStyle: {
@@ -29,8 +29,8 @@ const TabsNavigator = () => {
         
         }}>
             <BottomTab.Screen
-                name="SearchTab"
-                component={SearchNavigator}
+                name="MainTab"
+                component={MainNavigator}
                 options={{
                     tabBarLabel: "Home",
                     tabBarIcon: ({
