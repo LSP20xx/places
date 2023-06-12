@@ -1,11 +1,13 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-import { placesReducer } from './reducers/index';
-import { categoriesReducer } from './reducers/index';
+import { placesReducer, categoriesReducer, favoritesReducer, authReducer } from './reducers/index';
 
 const rootReducer = combineReducers({
     places: placesReducer,
     categories: categoriesReducer,
+    favorites: favoritesReducer,
+    auth: authReducer,
 });
 
-export default createStore(rootReducer);
+export default createStore(rootReducer, applyMiddleware(thunk));

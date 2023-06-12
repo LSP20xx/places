@@ -48,7 +48,6 @@ export const styles = StyleSheet.create(
         },
         link: {
           fontSize: 14,
-          fontFamily: 'Roboto',
           fontWeight: 'bold',
           marginTop: 8,
           color: COLORS.primary,

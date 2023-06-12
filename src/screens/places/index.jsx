@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import { FlatList, SafeAreaView, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { PlaceItem } from '../../components/index';
-import { selectPlace } from '../../store/actions';
-import { filterPlaces } from '../../store/actions';
+import { selectPlace, filterPlaces } from '../../store/actions';
 
 import { styles } from './styles';
 
 const Places = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { selected } = useSelector((state) => state.categories);
+  const { selectedCategory }= useSelector((state) => state.categories);
   const { filteredPlaces } = useSelector((state) => state.places);
 
   const onSelected = (item) => {
@@ -18,7 +17,7 @@ const Places = ({ navigation }) => {
   }
 
   useEffect(() => {
-      dispatch(filterPlaces(selected.name));
+      dispatch(filterPlaces(selectedCategory.name));
   }, []);
 
 
@@ -33,7 +32,7 @@ const Places = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.sectionTitle}>{selected.name}</Text>
+      <Text style={styles.sectionTitle}>{selectedCategory.name}</Text>
       <FlatList
           data={filteredPlaces}
           renderItem={renderPlaceItem}

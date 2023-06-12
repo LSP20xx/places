@@ -4,7 +4,7 @@ const { SELECT_CATEGORY } = categoriesTypes;
 
 const initialState = {
     data: CATEGORIES,
-    selected: null,
+    selectedCategory: null,
 }
 
 const categoriesReducer = (state = initialState, action) => {
@@ -14,7 +14,7 @@ const categoriesReducer = (state = initialState, action) => {
             if (indexCategory === -1) return state;
             return {
                 ...state,
-                selected: state.data[indexCategory],
+                selectedCategory: state.data[indexCategory],
             }
         default:
             return state;

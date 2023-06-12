@@ -18,7 +18,6 @@ const TabsNavigator = () => {
             tabBarStyle: {
                 backgroundColor: COLORS.primary,
                 fontSize: 20,
-                
             },
             tabBarActiveTintColor: COLORS.white,
             tabBarInactiveTintColor: COLORS.white,

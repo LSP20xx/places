@@ -10,8 +10,13 @@ export const styles = StyleSheet.create(
         },
         textContainer: {
             flex: 1,
-            paddingVertical: 8,
-            paddingHorizontal: 12,
+            paddingVertical: 16,
+            paddingHorizontal: 24,
+        },
+        headerTextContainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
         },
         buttonContainer: {
             flexDirection: 'row',
@@ -26,13 +31,18 @@ export const styles = StyleSheet.create(
             height: 260,
         },
         title: {
-            fontSize: 22,
+            fontSize: 24,
             fontWeight: 'normal',
             color: COLORS.texts,
         },
         address: {
             fontSize: 14,
             marginTop: 4,
+            color: COLORS.texts,
+        },
+        noLocationText: {
+            fontSize: 14,
+            marginTop: "25%",
             color: COLORS.texts,
         },
     }
