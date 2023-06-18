@@ -4,15 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectPlace } from '../../store/actions';
 import { selectCategory } from '../../store/actions';
 import { styles } from './styles';
-import { COLORS } from '../../constants';
 
 const Home = ({ navigation }) => {
 
   const { data } = useSelector((state) => state.places);
   const dispatch = useDispatch();
-  
-
-  
 
   const onSelectedCategory = (name) => {
     dispatch(selectCategory(name));

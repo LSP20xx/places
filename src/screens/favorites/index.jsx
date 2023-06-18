@@ -3,7 +3,6 @@ import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import { FavoriteItem } from '../../components/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFavorites, removeFromFavorites } from '../../store/actions';
-
 import { styles } from './styles';
 
 const Favorites = () => {
