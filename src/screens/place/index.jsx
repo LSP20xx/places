@@ -1,23 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useDispatch, useSelector } from 'react-redux';
-import { View, Image, Text, Button, Alert } from 'react-native';
+import { View, Image, Text, Button, Alert, ActivityIndicator } from 'react-native';
 import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from 'expo-location'; 
-
 import { COLORS } from '../../constants';
 import { addToFavorites } from '../../store/actions';
 import { styles } from './styles';
 import { MapPreview } from '../../components';
+import { URL_MAPS } from '../../utils/maps';
+import { addMap, fetchMapFromDatabase,} from '../../store/slices/maps.slice';
 
 const Place = () => {
   const [pickedLocation, setPickedLocation] = useState(null);
+  const [loadingLocation, setLoadingLocation] = useState(true);
   const dispatch = useDispatch();
   const { data, selected }  = useSelector((state) => state.places);
   const place = data.find((place) => place.id === selected.id);
+  const [imageUrl, setImageUrl] = useState(null);
+  useEffect(() => {
 
-  const onAddToFavorites = () => {
-    dispatch(addToFavorites(place));
-  };
+    dispatch(fetchMapFromDatabase(place.id.toString())).unwrap().then((res) => {
+      try {
+        if (res.rows.length && res.rows.length > 0) {
+          const map = res.rows.item(0);
+          setImageUrl(map.imageUri);
+          setLoadingLocation(false);
+        } else {
+          dispatch(addMap({id: place.id.toString(), title: place.title, address: place.address, imageUri: place.address ? URL_MAPS(encodeURIComponent(place.address)) : null})).unwrap().then((res) => {
+          setLoadingLocation(false);
+          setImageUrl(place.address ? URL_MAPS(encodeURIComponent(place.address)) : null);
+          }).catch((err) => {
+            console.log(err);
+            setLoadingLocation(true);
+          });
+
+        }
+      } catch (error) {
+        console.log(error)
+
+      }
+    }).catch((err) => {
+      console.log(err);
+    }
+    );
+  }, [dispatch, place.id]);
+
+
 
   const verifyPermissions = async () => {
     const { status } = await requestForegroundPermissionsAsync();
@@ -32,7 +60,7 @@ const Place = () => {
     return true;
   };
 
-  const onHandlerGetLocation = async () => {
+  const onHandlerGetCurrentLocation = async () => {
     const hasPermission = await verifyPermissions();
     if (!hasPermission) {
       return;
@@ -46,13 +74,19 @@ const Place = () => {
         lat: latitude,
         lng: longitude,
       });
+      setLoadingLocation(false);
     } catch (err) {
       Alert.alert(
         'No se pudo obtener la ubicación',
         'Intente nuevamente más tarde o elija una ubicación en el mapa',
         [{ text: 'Ok' }]
       );
+      setLoadingLocation(false);
     }
+  };
+
+  const onAddToFavorites = () => {
+    dispatch(addToFavorites(place));
   };
 
   return (
@@ -66,13 +100,17 @@ const Place = () => {
         <Text style={styles.address}>{place.address}</Text>
         <Text style={styles.telephone}>{place.telephone}</Text>
         <View style={styles.buttonContainer}>
-          <Button style={styles.button} onPress={onHandlerGetLocation} title="Ubicación" color={COLORS.primary}></Button>
+          <Button style={styles.button} onPress={() => {}} title="Ubicación" color={COLORS.primary}></Button>
           <View style={{ width: 16 }}></View>
           <Button style={styles.button} onPress={() => {}} title="Cómo Llegar" color={COLORS.primary}></Button>
         </View>
-        <MapPreview location={pickedLocation} style={styles.mapPreview}>
-          <Text style={styles.noLocationText}>No se pudo obtener la ubicación</Text>
-        </MapPreview>
+        {loadingLocation ? (
+          <ActivityIndicator size="large" color={COLORS.primary} style={styles.loading}/>
+        ) : (
+          <MapPreview location={pickedLocation} address={place.address} imageUrl={imageUrl}style={styles.mapPreview}>
+            <Text style={styles.noLocationText}>No se pudo obtener la ubicación</Text>
+          </MapPreview>
+        )}
       </View>
     </View>
   );

@@ -6,7 +6,7 @@ import { styles } from "./styles";
 import { Input } from "../../components";
 import { COLORS } from "../../constants";
 import { clearError, signIn, signUp } from "../../store/actions";
-import { UPDATE_FORM, onInputChange } from "../../utils/form";
+import { UPDATE_FORM, onInputChange } from "../../utils/forms";
 
 const initialState = {
   email: { value: "", error: "", touched: false, hasError: true },

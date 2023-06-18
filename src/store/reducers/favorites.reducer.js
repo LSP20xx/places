@@ -9,16 +9,15 @@ const initialState = {
 const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TO_FAVORITES:
-            return {
-                ...state,
-                favoritePlaces: [...state.favoritePlaces, action.item],
-            };
+            const isPlaceAlreadyAdded = state.favoritePlaces.some(place => place.id === action.item.id);
+            return isPlaceAlreadyAdded ? state : { ...state, favoritePlaces: [...state.favoritePlaces, action.item], total: state.total + 1 };
         case REMOVE_FROM_FAVORITES:
             return {
                 ...state,
                 favoritePlaces: state.favoritePlaces.filter((place) => place.id !== action.id),
             };
         case GET_FAVORITES:
+            console.log(state.total)
             return {
                 ...state,
                 favoritePlaces: state.favoritePlaces,

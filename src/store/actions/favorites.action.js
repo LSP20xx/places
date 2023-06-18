@@ -19,7 +19,7 @@ export const addToFavorites = (place) => {
                 type: ADD_TO_FAVORITES,
                 item: {
                     ...place,
-                    id: result.name
+                    id: place.id
                 }
             });
         } catch (error) {

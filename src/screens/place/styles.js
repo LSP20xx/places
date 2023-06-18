@@ -45,5 +45,15 @@ export const styles = StyleSheet.create(
             marginTop: "25%",
             color: COLORS.texts,
         },
+        mapPreviewContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+          loading: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }
     }
 );
