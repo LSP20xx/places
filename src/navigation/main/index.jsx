@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../../screens/home';
 import Place from '../../screens/place';
 import Places from '../../screens/places';
+import Maps from '../../screens/maps';
 
 import { COLORS } from '../../constants';
 
@@ -25,6 +26,7 @@ const MainNavigator = () => {
             <Stack.Screen name="Panaderías" component={Places}/>
             <Stack.Screen name="Cafeterías" component={Places}/>
             <Stack.Screen name="Local" component={Place} />
+            <Stack.Screen name="Mapa" component={Maps} />
         </Stack.Navigator>
     );
 };

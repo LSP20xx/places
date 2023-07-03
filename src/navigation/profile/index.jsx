@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { COLORS } from '../../constants';
-import { NotFound } from '../../screens';
+import { Profile } from '../../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +16,7 @@ const ProfileNavigator = () => {
                 headerTintColor: COLORS.white, 
             }}
         >
-            <Stack.Screen name="Perfil" component={NotFound} />
+            <Stack.Screen name="Perfil" component={Profile} />
             </Stack.Navigator>
     );
 };

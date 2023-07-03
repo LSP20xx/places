@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { COLORS } from "../../constants";
 import MainNavigator from "../main";
 import FavoritesNavigator from "../favorites";
-import NotificationsNavigator from "../notifications";
 import ProfileNavigator from "../profile";
 
 
@@ -57,21 +56,7 @@ const TabsNavigator = () => {
                         )
                 }}
             />
-            <BottomTab.Screen
-                name="NotificationsTab"
-                component={NotificationsNavigator}
-                options={{
-                    tabBarLabel: "Notificaciones",
-                    tabBarIcon: ({
-                        focused, color, size }) => (
-                            <Ionicons
-                                name={"notifications"}
-                                color={color}
-                                size={size}
-                            />
-                        )
-                }}
-            />
+        
             <BottomTab.Screen
                 name="ProfileTab"
                 component={ProfileNavigator}

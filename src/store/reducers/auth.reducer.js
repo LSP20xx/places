@@ -15,6 +15,7 @@ const initialState = {
   error: null,
   token: null,
   userId: null,
+  email: null,
   hasError: false,
 };
 
@@ -30,6 +31,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: action.token,
         userId: action.userId,
+        email: action.email,
         isLoading: false,
         error: null,
         hasError: false,
@@ -40,6 +42,7 @@ const authReducer = (state = initialState, action) => {
         token: null,
         userId: null,
         isLoading: false,
+        email: null,
         error: action.error,
         hasError: true,
       };
@@ -53,6 +56,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: action.token,
         userId: action.userId,
+        email: action.email,
         isLoading: false,
         error: null,
         hasError: false,
@@ -62,6 +66,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: null,
         userId: null,
+        email: null,
         isLoading: false,
         error: action.error,
         hasError: true,

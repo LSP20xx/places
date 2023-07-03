@@ -17,7 +17,6 @@ const favoritesReducer = (state = initialState, action) => {
                 favoritePlaces: state.favoritePlaces.filter((place) => place.id !== action.id),
             };
         case GET_FAVORITES:
-            console.log(state.total)
             return {
                 ...state,
                 favoritePlaces: state.favoritePlaces,
